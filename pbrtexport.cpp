@@ -10,6 +10,7 @@
 #include "cameras/camera.h"
 #include "lights/light.h"
 #include "objects/mesh.h"
+#include "objects/sphere.h"
 
 #include <fstream>
 #include <iomanip>
@@ -125,6 +126,18 @@ namespace pbrt {
 			}
 		}
 		
+		// loop through all the spheres
+		MItDag sphereItDag(MItDag::kDepthFirst, MFn::kSphere, &status);
+		for (; !sphereItDag.isDone(); sphereItDag.next()) {
+			sphereItDag.getPath(tempDagPath);
+			
+			// visiblity test
+			MFnDagNode visTest(tempDagPath);
+			if (isVisible(visTest)) {
+				Sphere sphere(tempDagPath);
+				fout << sphere << endl;
+			}
+		}
 		
 		// loop through all the meshes
 		MItDag meshItDag(MItDag::kDepthFirst, MFn::kMesh, &status);
@@ -173,5 +186,4 @@ namespace pbrt {
 			return visible;
 		}
 	}
-
 }

@@ -457,6 +457,14 @@
 					RelativePath=".\objects\polygonset.h"
 					>
 				</File>
+				<File
+					RelativePath=".\objects\sphere.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\objects\sphere.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<File

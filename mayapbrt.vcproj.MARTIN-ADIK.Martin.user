@@ -37,7 +37,7 @@
 			Name="Debug|Win32"
 			>
 			<DebugSettings
-				Command=""
+				Command="C:\Program Files\Autodesk\Maya2008\bin\maya.exe"
 				WorkingDirectory=""
 				CommandArguments=""
 				Attach="false"
