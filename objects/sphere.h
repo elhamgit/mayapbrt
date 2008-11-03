@@ -14,19 +14,20 @@
 #include <vector>
 #include <ostream>
 
-#include <maya/MDagPath.h>
+#include <maya/MFnDependencyNode.h>
 
 namespace pbrt {
 	class Sphere : public Object {
 		public:
-			Sphere(const MDagPath &dagPath);
+			Sphere(const MFnDependencyNode &node);
 			~Sphere();
 			
-			void SetSphere(const MDagPath &dagPath);
+			void SetSphere(const MFnDependencyNode &node);
 			void Insert(std::ostream& fout) const;
 		private:
 			MStatus Sphere::TranslationMatrix(std::ostream& fout) const;
-			MDagPath dagPath;
+			MFnDependencyNode node;
+			float radius;
 	};
 	
 }

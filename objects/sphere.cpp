@@ -9,7 +9,7 @@
 
 #include "sphere.h"
 
-#include <maya/MObjectArray.h>
+#include <maya/MPlug.h>
 #include <maya/MGlobal.h>
 #include <maya/MTransformationMatrix.h>
 #include <maya/MEulerRotation.h>
@@ -20,16 +20,17 @@ using namespace std;
 
 namespace pbrt {
 
-	Sphere::Sphere(const MDagPath &_dagPath) : dagPath(_dagPath) {
-		SetSphere(_dagPath);
+	Sphere::Sphere(const MFnDependencyNode &_node) : dagPath(_node) {
+		SetSphere(_node);
 	}
 
 	Sphere::~Sphere() {	
 	}
 	
 	// grab the current mesh and setup the polygon sets
-	void Sphere::SetSphere(const MDagPath &dPath) {
-		
+	void Sphere::SetSphere(const MFnDependencyNode &node) {		
+		MPlug plug(node.object(), node.attribute("radius"));
+		radius = plug.asFloat();
 	}
 	
 	// insert the maya data into a pbrt input file

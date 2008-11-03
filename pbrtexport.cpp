@@ -18,7 +18,17 @@
 #include <maya/MItDag.h>
 #include <maya/MGlobal.h>
 #include <maya/MFnCamera.h>
-
+#include <maya/MFnSphereData.h>
+#include <maya/MItDependencyNodes.h>
+#include <maya/MFnAttribute.h>
+#include <maya/MFnNumericAttribute.h>
+#include <maya/MDataHandle.h>
+#include <maya/MDataBlock.h>
+#include <maya/MPlug.h>
+#include <maya/MPlugArray.h>
+#include <maya/MIteratorType.h>
+#include <maya/MIntArray.h>  
+ 	 	
 using namespace std;
 
 namespace pbrt {
@@ -125,20 +135,54 @@ namespace pbrt {
 				}
 			}
 		}
-		
+		double min, max;
+		MIntArray itTypeArray(3);
+		itTypeArray.set(MFn::kPolySphere, 0);
+		itTypeArray.set(MFn::kSphere, 1);
+		itTypeArray.set(MFn::kRenderSphere, 2);
+		MIteratorType itType;
+		itType.setFilterList(itTypeArray);
 		// loop through all the spheres
-		MItDag sphereItDag(MItDag::kDepthFirst, MFn::kSphere, &status);
-		for (; !sphereItDag.isDone(); sphereItDag.next()) {
-			sphereItDag.getPath(tempDagPath);
-			
-			// visiblity test
-			MFnDagNode visTest(tempDagPath);
-			if (isVisible(visTest)) {
-				Sphere sphere(tempDagPath);
-				fout << sphere << endl;
+		MItDependencyNodes sphereItDag(itType);
+		//MItDag sphereItDag;
+		for (; !sphereItDag.isDone(); sphereItDag.next()) 
+		{			
+			MFnDependencyNode dNode(sphereItDag.thisNode());			
+			//MFnAttribute atrib(dNode.attribute(12));
+			//MDataHandle dh = MDataBlock::inputValue(dNode.attribute(12));
+			//cout << "radius" << dh.asFloat() << " ";
+			MPlugArray mpArray;
+			dNode.getConnections(mpArray);
+			for(int i = 0; i < mpArray.length(); i++)
+			{
+				cout << mpArray[i].name() << " ";
 			}
+			cout << endl;
+			MObject pobj;
+			mpArray[0].getValue(pobj);
+			MFnDependencyNode dNod(pobj);
+			MPlug plug(sphereItDag.thisNode(), dNode.attribute("radius"));			
+			cout << dNode.name() << " , " << dNode.typeName() << ";  " << plug.asDouble() << dNod.name() << " " << endl;
+			//MFnSphereData test(sphereItDag.item(), &status);
+			//cout << " " << status.errorString() << " type " << test.type() << "  " << test.radius() << " " << endl;									
 		}
 		
+		/*cout << endl << endl;
+		MItDag sItDag;
+		for (; !sItDag.isDone(); sItDag.next()) 
+		{			
+			MFnDagNode dNode(sItDag.item());
+			MFnDependencyNode dNod(dNode.child(0));
+			//MFnAttribute atrib(dNode.attribute(12));
+			//MDataHandle dh = MDataBlock::inputValue(dNode.attribute(12));
+			//cout << "radius" << dh.asFloat() << " ";			
+
+			cout << dNode.name() << " , " << dNode.typeName() << ";  " << dNod.name() << " " << endl;
+			//MFnSphereData test(sphereItDag.item(), &status);
+			//cout << " " << status.errorString() << " type " << test.type() << "  " << test.radius() << " " << endl;									
+		}*/
+
+
 		// loop through all the meshes
 		MItDag meshItDag(MItDag::kDepthFirst, MFn::kMesh, &status);
 		for (; !meshItDag.isDone(); meshItDag.next()) {
