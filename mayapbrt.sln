@@ -1,20 +1,18 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mayapbrt", "mayapbrt.vcproj", "{6B9D1929-E2AC-4985-BD5A-AAF33636C822}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mayapbrt", "mayapbrt\mayapbrt.vcproj", "{EF7D4A9F-F3D8-4AED-AF3E-CD31BD409690}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
-		ReleaseDebug|Win32 = ReleaseDebug|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6B9D1929-E2AC-4985-BD5A-AAF33636C822}.Debug|Win32.ActiveCfg = Debug|Win32
-		{6B9D1929-E2AC-4985-BD5A-AAF33636C822}.Debug|Win32.Build.0 = Debug|Win32
-		{6B9D1929-E2AC-4985-BD5A-AAF33636C822}.Release|Win32.ActiveCfg = Release|Win32
-		{6B9D1929-E2AC-4985-BD5A-AAF33636C822}.Release|Win32.Build.0 = Release|Win32
-		{6B9D1929-E2AC-4985-BD5A-AAF33636C822}.ReleaseDebug|Win32.ActiveCfg = ReleaseDebug|Win32
-		{6B9D1929-E2AC-4985-BD5A-AAF33636C822}.ReleaseDebug|Win32.Build.0 = ReleaseDebug|Win32
+		{EF7D4A9F-F3D8-4AED-AF3E-CD31BD409690}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EF7D4A9F-F3D8-4AED-AF3E-CD31BD409690}.Debug|Win32.Build.0 = Debug|Win32
+		{EF7D4A9F-F3D8-4AED-AF3E-CD31BD409690}.Release|Win32.ActiveCfg = Release|Win32
+		{EF7D4A9F-F3D8-4AED-AF3E-CD31BD409690}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
