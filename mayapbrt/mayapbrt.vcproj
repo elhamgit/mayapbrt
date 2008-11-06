@@ -64,7 +64,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/LIBPATH:&quot;C:\Program Files\AliasWavefront\Maya6.0\lib&quot;&#x0D;&#x0A;/export:initializePlugin /export:uninitializePlugin"
 				AdditionalDependencies="Foundation.lib OpenMaya.lib OpenMayaUI.lib OpenMayaAnim.lib OpenMayaFX.lib OpenMayaRender.lib Image.lib"
-				OutputFile="$(OutDir)\$(ProjectName).mll"
+				OutputFile="C:\Program Files\Autodesk\Maya2008\bin\plug-ins\$(ProjectName).mll"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"

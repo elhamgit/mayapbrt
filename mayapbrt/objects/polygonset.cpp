@@ -150,7 +150,12 @@ namespace pbrt {
 					normals.push_back(meshNormals[ itMeshPolygon.normalIndex( localIndex[2] ) ].z);
 					
 					// note: this only looks at the UVs for the default map set
-					
+
+// moje upravy
+// chyba byla, ze se tady nacitaji indexy do pole u a v. Ale pokud akce selze, jde index mimo
+// rozsah, takze jsem jen pridal kontrolu navratove hodnoty
+// je-li failure, pak se UVs netisknout do souboru
+
 					int uvID[3];
 					MStatus status;
 					// Get UV values for each vertex within this polygon
