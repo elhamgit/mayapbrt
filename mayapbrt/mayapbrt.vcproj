@@ -237,11 +237,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\objects\sphere\polysphere.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\materials\shinymetal.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\objects\sphere.cpp"
+				RelativePath=".\objects\sphere\sphere.cpp"
 				>
 			</File>
 			<File
@@ -315,11 +319,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\objects\sphere\polysphere.h"
+				>
+			</File>
+			<File
 				RelativePath=".\materials\shinymetal.h"
 				>
 			</File>
 			<File
-				RelativePath=".\objects\sphere.h"
+				RelativePath=".\objects\sphere\sphere.h"
 				>
 			</File>
 			<File
