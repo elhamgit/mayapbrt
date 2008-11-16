@@ -225,6 +225,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\materials\phongmat.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\materials\plastic.cpp"
 				>
 			</File>
@@ -304,6 +308,10 @@
 			</File>
 			<File
 				RelativePath=".\pbrtview.h"
+				>
+			</File>
+			<File
+				RelativePath=".\materials\phongmat.h"
 				>
 			</File>
 			<File

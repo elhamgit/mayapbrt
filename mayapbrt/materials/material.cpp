@@ -20,6 +20,7 @@
 #include "shinymetal.h"
 #include "plastic.h"
 #include "uber.h"
+#include "phongmat.h"
 
 using namespace std;
 
@@ -38,8 +39,8 @@ namespace pbrt {
 			return new Plastic(depNode);			
 		} else if (depNode.typeName() == "anisotropic") {
 			// need to find a better material
-		} else if (depNode.typeName() == "phong") {
-			return new Uber(depNode);
+		} else if (depNode.typeName() == "phong") {			
+			return new PhongMat(depNode);
 		} else {
 			return new Uber(depNode);
 		}
