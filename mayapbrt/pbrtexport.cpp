@@ -86,8 +86,8 @@ namespace pbrt {
 		// create default camera and output it
 		// find the appopriate camera
 		cout << cameraName.asChar() << " " << width << " " << height << endl;
-		MItDag cameraItDag(MItDag::kDepthFirst, MFn::kCamera, &status);
-		
+		MItDag cameraItDag(MItDag::kDepthFirst, MFn::kCamera, &status);			
+
 		bool found = false;
 		MDagPath cameraPath;
 
@@ -115,6 +115,15 @@ namespace pbrt {
 		}catch(ExportError e){
 			fout << e << endl;
 		}
+
+		fout << "Sampler \"stratified\" \"bool jitter\" [\"false\"]" << endl;
+		fout << "\"integer xsamples\" [1] \"integer ysamples\" [1] #\"bool hierarchical\" [\"true\"]" << endl;
+		fout << "Film \"image\" \"integer xresolution\" [100] \"integer yresolution\" [100]" << endl;
+	  fout << "\"bool premultiplyalpha\" [\"false\"] \"string filename\" [\"exr/all.exr\"]" << endl;
+
+		fout << "SurfaceIntegrator \"directlighting\"" << endl;
+		fout << "\"bool IRRuseMinHitDist\" [\"false\"] \"float IRRminDist\" [10] \"float IRRmaxDist\" [50]" << endl;
+		fout << "\"float IRRprerenderMult\" [.25] \"float IRRrenderMult\" [1.4]" << endl << endl;
 
 		fout << "WorldBegin" << endl;
 		

@@ -231,10 +231,13 @@ namespace pbrt {
 			fout << *itP << " ";		
 		fout << "]" << endl;
 		
-		fout << "\"float uv\" [";
-		for (vector<float>::const_iterator itP = uvs.begin(); itP != uvs.end(); itP++)
-			fout << *itP << " ";		
-		fout << "]" << endl;
+		if(!uvs.empty())
+		{
+			fout << "\"float uv\" [";
+			for (vector<float>::const_iterator itP = uvs.begin(); itP != uvs.end(); itP++)
+				fout << *itP << " ";		
+			fout << "]" << endl;
+		}
 		
 		fout << "\"integer indices\" [";
 		/*

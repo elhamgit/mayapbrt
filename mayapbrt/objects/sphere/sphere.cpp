@@ -55,6 +55,4 @@ namespace pbrt {
 
 		return MStatus::kSuccess;
 	}
-
-
 }

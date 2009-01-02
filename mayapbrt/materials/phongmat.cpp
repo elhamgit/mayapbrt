@@ -75,6 +75,7 @@ namespace pbrt {
 		if (status == MStatus::kSuccess) 
 			fout << "\"float sigma\" [" << sigma << "] ";
 		
+		// sigma = cosine_power
 		fout << std::endl;		
 	}
 }
