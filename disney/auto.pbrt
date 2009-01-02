@@ -1,0 +1,82 @@
+# Cornel box with pyramid and glossy floor
+LookAt 0 0 120   0 0 0   0 1 0
+Camera "perspective" "float fov" [45.240] "float hither" [.1]
+PixelFilter "mitchell" "float xwidth" [.5] "float ywidth" [.5]
+Accelerator "kdtree" "integer intersectcost" [200] "integer maxprims" [8]
+
+#PreSampler "stratified" "bool jitter" ["false"]
+#PreSampler "bestcandidate" "integer pixelsamples" [1]
+#	"integer xsamples" [1] "integer ysamples" [1] #"bool hierarchy" ["true"]
+#Sampler "bestcandidate" "integer pixelsamples" [1]
+Sampler "stratified" "bool jitter" ["false"]
+	"integer xsamples" [1] "integer ysamples" [1] #"bool hierarchical" ["true"]
+
+#Film "image" "integer xresolution" [8] "integer yresolution" [8]
+#Film "image" "integer xresolution" [16] "integer yresolution" [16]
+#Film "image" "integer xresolution" [32] "integer yresolution" [32]
+#Film "image" "integer xresolution" [64] "integer yresolution" [64]
+#Film "image" "integer xresolution" [128] "integer yresolution" [128]
+Film "image" "integer xresolution" [100] "integer yresolution" [100]
+#Film "image" "integer xresolution" [148] "integer yresolution" [148]
+#Film "image" "integer xresolution" [256] "integer yresolution" [256]
+#Film "image" "integer xresolution" [512] "integer yresolution" [512]
+	"bool premultiplyalpha" ["false"] "string filename" ["exr/auto.exr"]
+
+SurfaceIntegrator "directlighting"
+#SurfaceIntegrator "mccook" "float numRaysMult" [.03125] "string samplingStrategy" ["IMPORTANCE"]
+#SurfaceIntegrator "cachingalgo"
+	"string useCache" ["IRR"] #["SD" "IRR"]#["SH"]#
+	"integer recurseDepth" [1] "bool visMCrays" ["true"]
+#IRR
+	"bool IRRuseMinHitDist" ["false"] "float IRRminDist" [10] "float IRRmaxDist" [50]
+	"float IRRprerenderMult" [.25] "float IRRrenderMult" [1.4]
+#TAB#	"bool IRRuseMinHitDist" ["true"] "float IRRminDist" [2] "float IRRmaxDist" [20]
+#TAB#	"float IRRprerenderMult" [.5] "float IRRrenderMult" [1.4]
+	"bool IRRneighborClamping" ["false"] "bool IRRvisCacheRecord" ["true"]
+
+
+###############################################################################
+WorldBegin
+
+AdvanceMtlProperty "default" 
+	"string samplingStrategy" ["UNIFORM"] 
+	"float numRaysMult" [2] "float minADot" [30]
+AdvanceMtlProperty "SD"
+	"float minADot" [30]
+	"float numRaysMult" [.5]
+
+Texture "red"   "color" "constant" "color value" [1 0 0]
+Texture "green" "color" "constant" "color value" [0 1 0]
+Texture "blue"  "color" "constant" "color value" [0 0 1]
+Texture "lightblue"  "color" "constant" "color value" [.2 .2 1]
+Texture "yellow""color" "constant" "color value" [1 1 0]
+Texture "white" "color" "constant" "color value" [1 1 1]
+Texture "sand"  "color" "constant" "color value" [0.58  0.49  0.32]
+Texture "rgbstripes" "color" "imagemap" "string filename" "textures/rgbstripes.exr"
+Texture "cmystripe" "color" "imagemap" "string filename" "textures/cmystripe.exr"
+
+################################## CBOX_BEGIN ##################################
+LightSource "spot"
+	"point from" [0 0 100] "point to" [0 0 0] "color I" [4000 4000 4000]
+	"float coneangle" [90] "float conedeltaangle" [0]
+	
+#Back wall - sand
+    Material "matte" "texture Kd" "sand"
+    Shape "trianglemesh"
+        "point P" [-50 -50 0   50 -50 0    50 50 0    -50 50 0]
+		"float uv" [ 0 0   1 0   1 1   0 1 ] 
+		"integer indices" [0  1  3      1  2  3]
+
+### CBOX_END ###
+################################ SPHERE_BEGIN #################################
+AttributeBegin
+	#Material "matte" "texture Kd" "yellow"
+	Material "phongmat" "color Rhod" [.0 .0 .0] "color Rhos" [1 1 1] "float sigma" [20]
+	#Material "wardmat"  "color rhod" [.0 .0 .0] "color rhos" [1 1 1] "float alphau" [.1] "float alphav" [.1] 
+
+	Translate 27.5 27.5 27.5
+	#Shape "sphere" "float radius" 20
+AttributeEnd
+### SPHERE_END ###
+
+WorldEnd
